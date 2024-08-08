@@ -1,6 +1,21 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider @bind-IsDarkMode="@_isDarkTheme" Theme="_theme" />
+<MudThemeProvider @bind-IsDarkMode="@_isDarkTheme" Theme="MyCustomTheme" />
+
+@code {
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Palette = new PaletteLight()
+            {
+                Primary = Colors.Blue.Darken4,
+                Secondary = Colors.Green.Accent4,
+                AppbarBackground = Colors.Red.Default,
+                //Define other properties here.
+            },
+
+        };
+}
+
 <MudDialogProvider FullWidth="true" MaxWidth="MaxWidth.Small" CloseButton="true" DisableBackdropClick="true"
     Position="DialogPosition.Center" CloseOnEscapeKey="true" />
 <MudSnackbarProvider />
