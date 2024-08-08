@@ -87,7 +87,7 @@ ol > li {
     width: 8rem;
     height: 8rem;
     margin: 20vh auto 1rem auto;
-    font: var(--mud-typography-default-family);
+    font-family: var(--mud-typography-default-family);
 }
 
 .loading-progress circle {
@@ -96,6 +96,7 @@ ol > li {
     stroke-width: 0.6rem;
     transform-origin: 50% 50%;
     transform: rotate(-90deg);
+    font-family: var(--mud-typography-default-family);
 }
 
 .loading-progress circle:last-child {
@@ -109,13 +110,13 @@ ol > li {
     position: absolute;
     text-align: center;
     font-weight: bold;
-    font: var(--mud-typography-default-family);
+    font-family: var(--mud-typography-default-family);
     inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
 }
 
 .loading-progress-text:after {
     content: var(--blazor-load-percentage-text, "Loading");
-    font: var(--mud-typography-default-family);
+    font-family: var(--mud-typography-default-family);
 }
 
 .rtl-lang {
