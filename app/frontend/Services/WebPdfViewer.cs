@@ -14,7 +14,7 @@ public class WebPdfViewer(IDialogService dialog, ISnackbar snackbar) : IPdfViewe
             new DialogParameters
             {
                 [nameof(PdfViewerDialog.FileName)] = name,
-                [nameof(PdfViewerDialog.BaseUrl)] = url.Replace($"/{name}", "").Replace("Source:%20", ""),
+                [nameof(PdfViewerDialog.BaseUrl)] = url.ToLower().Replace($"/{name}", "").Replace("source:%20", ""),
             },
             new DialogOptions
             {
