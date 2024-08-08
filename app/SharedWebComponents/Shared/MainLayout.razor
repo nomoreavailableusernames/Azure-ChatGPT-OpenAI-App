@@ -10,6 +10,15 @@
                 Primary = "#0D0C34",
                 Secondary = "#0D0C34",
                 AppbarBackground = "#0D0C34",
+                TextPrimary = "White"
+                /*
+                Info = "#64a7e2",
+                Success = "#2ECC40",
+                Warning = "#FFC107",
+                Error = "#FF0000",
+                TextPrimary = "#0A7BCF",
+                TextSecondary = "#4CAF50",
+                */
                 //Define other properties here.
             },
 
@@ -32,7 +41,7 @@
             {
                 <MudTooltip
                     Text="@(_isReversed ? "Sort conversations with latest answers on bottom" : "Sort conversations with latest answers on top")"
-                    Placement="Placement.Right" Arrow="true" Color="Color.Primary">
+                    Placement="Placement.Right" Arrow="true" Color="Color.Inherit">
                     <MudToggleIconButton Toggled="@_isReversed" ToggledChanged=@OnIsReversedChanged Size="Size.Large"
                         ToggledSize="Size.Large" Color="Color.Inherit" Icon=@Icons.Material.Filled.ArrowCircleDown
                         ToggledColor="Color.Inherit" ToggledIcon=@Icons.Material.Filled.ArrowCircleUp />
@@ -41,7 +50,7 @@
             <MudSpacer />
             @if (SettingsDisabled is false)
             {
-                <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Tertiary" Size="Size.Large"
+                <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Primary" Size="Size.Large"
                     Title="Open the developer settings side panel"
                     OnClick="@(_ => _settingsOpen = _settingsOpen is false)" />
             }
