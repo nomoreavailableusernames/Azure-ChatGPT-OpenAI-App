@@ -38,20 +38,20 @@
                 Title="Toggle navigation sidebar" Size="Size.Large" Edge="Edge.Start" OnClick="@OnMenuClicked" />
             @if (SortDisabled is false)
             {
-                <MudTooltip
-                    Text="@(_isReversed ? "Sort conversations with latest answers on bottom" : "Sort conversations with latest answers on top")"
-                    Placement="Placement.Right" Arrow="true" Color="Color.Inherit">
-                    <MudToggleIconButton Toggled="@_isReversed" ToggledChanged=@OnIsReversedChanged Size="Size.Large"
-                        ToggledSize="Size.Large" Color="Color.Inherit" Icon=@Icons.Material.Filled.ArrowCircleDown
-                        ToggledColor="Color.Inherit" ToggledIcon=@Icons.Material.Filled.ArrowCircleUp />
-                </MudTooltip>
+                    <MudTooltip
+                        Text="@(_isReversed ? "Sort conversations with latest answers on bottom" : "Sort conversations with latest answers on top")"
+                        Placement="Placement.Right" Arrow="true" Color="Color.Inherit">
+                        <MudToggleIconButton Toggled="@_isReversed" ToggledChanged=@OnIsReversedChanged Size="Size.Large"
+                            ToggledSize="Size.Large" Color="Color.Inherit" Icon=@Icons.Material.Filled.ArrowCircleDown
+                            ToggledColor="Color.Inherit" ToggledIcon=@Icons.Material.Filled.ArrowCircleUp />
+                    </MudTooltip>
             }
             <MudSpacer />
             @if (SettingsDisabled is false)
             {
-                <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Inherit" Size="Size.Large"
-                    Title="Open the developer settings side panel"
-                    OnClick="@(_ => _settingsOpen = _settingsOpen is false)" />
+                    <MudIconButton Icon="@Icons.Material.Filled.Settings" Color="Color.Inherit" Size="Size.Large"
+                        Title="Open the developer settings side panel"
+                        OnClick="@(_ => _settingsOpen = _settingsOpen is false)" />
             }
             <!--<MudToggleIconButton Toggled="@_isDarkTheme" ToggledChanged=@OnThemeChanged Size="Size.Large"
                 ToggledSize="Size.Large" Title="Switch to Dark theme" Icon=@Icons.Material.Filled.DarkMode
@@ -77,7 +77,6 @@
                 </MudText>-->
             </MudDrawerHeader>
             <MudDivider Style="flex-grow: 0;" />
-            <!--<NavMenu />-->
         </MudDrawer>
         <MudMainContent>
             <MudContainer MaxWidth="MaxWidth.Large" Fixed="false" Class="my-6 pt-6">
