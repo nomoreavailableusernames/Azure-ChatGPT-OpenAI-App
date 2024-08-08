@@ -65,7 +65,11 @@
         </MudAppBar>
         <MudDrawer @bind-Open="_drawerOpen" Elevation="5" id="drawer">
             <MudDrawerHeader>
-                <MudImage Src="favicon.png" Alt="GAO Logo" Elevation="0" Width="200" />
+                <!--<MudImage Src="favicon.png" Alt="GAO Logo" Elevation="0" Width="200" />-->
+                <MudButton Src="favicon.png" Title="Checkout the GAO homepage!" Href="https://www.gao.gov"
+                    Target="_blank" Alt="GAO Logo" Elevation="0" Width="200">
+
+                </MudButton>
                 <MudSpacer />
                 <!--<MudText Typo="Typo.h5" Color=Color.Surface>
                     GAO Chat
