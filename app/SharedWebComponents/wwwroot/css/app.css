@@ -79,6 +79,7 @@ ol > li {
 
 .blazor-error-boundary::after {
     content: "An error has occurred.";
+    font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
 }
 
 .loading-progress {
@@ -87,7 +88,7 @@ ol > li {
     width: 8rem;
     height: 8rem;
     margin: 20vh auto 1rem auto;
-    font-family: var(--mud-typography-default-family);
+    font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
 }
 
 .loading-progress circle {
@@ -96,7 +97,7 @@ ol > li {
     stroke-width: 0.6rem;
     transform-origin: 50% 50%;
     transform: rotate(-90deg);
-    font-family: var(--mud-typography-default-family);
+    font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
 }
 
 .loading-progress circle:last-child {
@@ -104,20 +105,20 @@ ol > li {
     stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8),
         500%;
     transition: stroke-dasharray 0.05s ease-in-out;
-    font-family: var(--mud-typography-default-family);
+    font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
 }
 
 .loading-progress-text {
     position: absolute;
     text-align: center;
     font-weight: bold;
-    font-family: var(--mud-typography-default-family);
+    font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
     inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
 }
 
 .loading-progress-text:after {
     content: var(--blazor-load-percentage-text, "Loading");
-    font-family: var(--mud-typography-default-family);
+    font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
 }
 
 .rtl-lang {
