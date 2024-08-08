@@ -87,6 +87,7 @@ ol > li {
     width: 8rem;
     height: 8rem;
     margin: 20vh auto 1rem auto;
+    font: var(--mud-typography-default-family);
 }
 
 .loading-progress circle {
@@ -114,6 +115,7 @@ ol > li {
 
 .loading-progress-text:after {
     content: var(--blazor-load-percentage-text, "Loading");
+    font: var(--mud-typography-default-family);
 }
 
 .rtl-lang {
