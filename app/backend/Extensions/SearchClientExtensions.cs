@@ -78,17 +78,20 @@ internal static class SearchClientExtensions
         foreach (var doc in searchResult.GetResults())
         {
             doc.Document.TryGetValue("sourcepage", out var sourcePageValue);
+            string baseUrlValue;
             string? contentValue;
             try
             {
                 if (useSemanticCaptions)
                 {
                     var docs = doc.SemanticSearch.Captions.Select(c => c.Text);
+                    baseUrlValue = string.Join(" . ", docs);
                     contentValue = string.Join(" . ", docs);
                 }
                 else
                 {
                     doc.Document.TryGetValue("content", out var value);
+                    baseUrlValue = (string)value;
                     contentValue = (string)value;
                 }
             }
@@ -97,10 +100,10 @@ internal static class SearchClientExtensions
                 contentValue = null;
             }
 
-            if (sourcePageValue is string sourcePage && contentValue is string content)
+            if (sourcePageValue is string sourcePage && baseUrlValue is string baseUrl && contentValue is string content)
             {
                 content = content.Replace('\r', ' ').Replace('\n', ' ');
-                sb.Add(new SupportingContentRecord(sourcePage,content));
+                sb.Add(new SupportingContentRecord(sourcePage,baseUrl,content));
             }
         }
 
