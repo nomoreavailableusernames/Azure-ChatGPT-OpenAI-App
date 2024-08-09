@@ -1,4 +1,4 @@
-﻿<MudList Clickable="true">
+﻿<MudList Clickable="false">
     @foreach (var (index, value) in _supportingContent.Select((item, i) => (i, item)))
     {
         if (value.IsEmpty)
@@ -14,7 +14,8 @@
         }
 
         <MudListItem>
-            <MudNavLink Href="@baseUrl" aria-label="@title" Icon="@Icons.Material.Filled.QuestionAnswer">
+            <MudNavLink Typo="Typo.subtitle1" Class="pb-2" Style="font-weight: bold;" Color="Color.Primary" Href="@baseUrl"
+                aria-label="@title" Icon="@Icons.Custom.FileFormats.FileDocument">
                 @title
             </MudNavLink>
             <!--<MudText Typo="Typo.subtitle1" Class="pb-2" Style="font-weight: bold;" Color="Color.Primary">@title</MudText>-->
