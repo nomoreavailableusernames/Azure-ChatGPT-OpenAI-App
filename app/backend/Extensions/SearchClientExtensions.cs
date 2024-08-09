@@ -78,7 +78,7 @@ internal static class SearchClientExtensions
         foreach (var doc in searchResult.GetResults())
         {
             doc.Document.TryGetValue("sourcepage", out var sourcePageValue);
-            string baseUrlValue;
+            string? baseUrlValue;
             string? contentValue;
             try
             {
@@ -98,11 +98,13 @@ internal static class SearchClientExtensions
             catch (ArgumentNullException)
             {
                 contentValue = null;
+                baseUrlValue = null;
             }
 
             if (sourcePageValue is string sourcePage && baseUrlValue is string baseUrl && contentValue is string content)
             {
                 content = content.Replace('\r', ' ').Replace('\n', ' ');
+                baseUrl = baseUrl.Replace('\r', ' ').Replace('\n', ' ');
                 sb.Add(new SupportingContentRecord(sourcePage,baseUrl,content));
             }
         }
