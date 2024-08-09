@@ -5,7 +5,9 @@
         {
             continue;
         }
-        var storageUrl = MinimalApi.Extensions.ConfigurationExtensions.ToCitationBaseUrl();
+        //var config = IConfiguration
+        //var endpoint = config.GetStorageAccountEndpoint();
+        //var storageUrl = Microsoft.Extensions.Configuration.ConfigurationExtensions.ToCitationBaseUrl();
         var (title, baseUrl, content) = value;
         var last = index == _supportingContent.Length - 1;
         if (index is not 0 && last is false)
