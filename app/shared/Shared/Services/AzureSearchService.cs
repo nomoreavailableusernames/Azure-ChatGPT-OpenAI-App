@@ -103,11 +103,13 @@ public class AzureSearchService(SearchClient searchClient) : ISearchService
             catch (ArgumentNullException)
             {
                 contentValue = null;
+                baseUrlValue = null;
             }
 
             if (sourcePageValue is string sourcePage && baseUrlValue is string baseUrl && contentValue is string content)
             {
                 content = content.Replace('\r', ' ').Replace('\n', ' ');
+                baseUrl = baseUrl.Replace('\r', ' ').Replace('\n', ' ');
                 sb.Add(new SupportingContentRecord(sourcePage, baseUrl, content));
             }
         }
