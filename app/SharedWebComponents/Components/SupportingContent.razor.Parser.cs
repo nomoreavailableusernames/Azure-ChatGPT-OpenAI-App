@@ -24,6 +24,5 @@ internal readonly record struct ParsedSupportingContentItem(
     internal bool IsEmpty =>
         string.IsNullOrWhiteSpace(Title) ||
         string.IsNullOrWhiteSpace(BaseUrl) ||
-        string.IsNullOrWhiteSpace(Content)
-        ;
+        string.IsNullOrWhiteSpace(Content);
 }
