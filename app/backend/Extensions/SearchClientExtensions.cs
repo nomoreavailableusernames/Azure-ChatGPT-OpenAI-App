@@ -85,12 +85,12 @@ internal static class SearchClientExtensions
                 if (useSemanticCaptions)
                 {
                     var docs = doc.SemanticSearch.Captions.Select(c => c.Text);
-                    baseUrlValue = string.Join("/",sourcePageValue);
+                    baseUrlValue = string.Join("https://st65r2fo2xbeufi.blob.core.windows.net/content/",sourcePageValue);
                     contentValue = string.Join(" . ", docs);
                 }
                 else
                 {                
-                    baseUrlValue = string.Join("/",sourcePageValue);
+                    baseUrlValue = string.Join("https://st65r2fo2xbeufi.blob.core.windows.net/content/",sourcePageValue);
                     doc.Document.TryGetValue("content", out var value);
                     contentValue = (string)value;
                 }
@@ -104,7 +104,7 @@ internal static class SearchClientExtensions
             if (sourcePageValue is string sourcePage && baseUrlValue is string baseUrl && contentValue is string content)
             {
                 content = content.Replace('\r', ' ').Replace('\n', ' ');
-                baseUrl = string.Join("/",sourcePage);
+                baseUrl = string.Join("https://st65r2fo2xbeufi.blob.core.windows.net/content/",sourcePage);
                 sb.Add(new SupportingContentRecord(sourcePage,baseUrl,content));
             }
         }
