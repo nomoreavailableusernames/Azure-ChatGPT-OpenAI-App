@@ -85,12 +85,12 @@ internal static class SearchClientExtensions
                 if (useSemanticCaptions)
                 {
                     var docs = doc.SemanticSearch.Captions.Select(c => c.Text);
-                    baseUrlValue = ConfigurationExtensions.ToCitationBaseUrl();
+                    baseUrlValue = string.Join(baseUrl,sourcePageValue);
                     contentValue = string.Join(" . ", docs);
                 }
                 else
                 {                
-                    baseUrlValue = ConfigurationExtensions.ToCitationBaseUrl();
+                    baseUrlValue = string.Join(baseUrl,sourcePageValue);
                     doc.Document.TryGetValue("content", out var value);
                     contentValue = (string)value;
                 }
@@ -104,7 +104,7 @@ internal static class SearchClientExtensions
             if (sourcePageValue is string sourcePage && baseUrlValue is string baseUrl && contentValue is string content)
             {
                 content = content.Replace('\r', ' ').Replace('\n', ' ');
-                baseUrl = tring.Join(baseUrl,sourcePage);
+                baseUrl = string.Join(baseUrl,sourcePage);
                 sb.Add(new SupportingContentRecord(sourcePage,baseUrl,content));
             }
         }
