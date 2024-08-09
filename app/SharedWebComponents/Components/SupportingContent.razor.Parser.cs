@@ -18,7 +18,7 @@ public sealed partial class SupportingContent
 
 internal readonly record struct ParsedSupportingContentItem(
     string Title,
-    string BaseUrl,
+    string? BaseUrl = null,
     string? Content = null)
 {
     internal bool IsEmpty =>
