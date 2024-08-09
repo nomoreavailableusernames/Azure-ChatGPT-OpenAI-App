@@ -18,8 +18,8 @@ public sealed partial class SupportingContent
 
 internal readonly record struct ParsedSupportingContentItem(
     string Title,
-    string? Content = null,
-    string BaseUrl)
+    string BaseUrl,
+    string? Content = null)
 {
     internal bool IsEmpty =>
         string.IsNullOrWhiteSpace(Title) ||
