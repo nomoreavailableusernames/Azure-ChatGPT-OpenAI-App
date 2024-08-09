@@ -6,7 +6,7 @@
             continue;
         }
 
-        var (title, content, url) = value;
+        var (title, baseUrl, content) = value;
         var last = index == _supportingContent.Length - 1;
         if (index is not 0 && last is false)
         {
@@ -14,7 +14,7 @@
         }
 
         <MudListItem>
-            <MudNavLink Href="@url" aria-label="@title" Icon="@Icons.Material.Filled.QuestionAnswer">
+            <MudNavLink Href="@baseUrl" aria-label="@title" Icon="@Icons.Material.Filled.QuestionAnswer">
                 @title
             </MudNavLink>
             <!--<MudText Typo="Typo.subtitle1" Class="pb-2" Style="font-weight: bold;" Color="Color.Primary">@title</MudText>-->

@@ -12,7 +12,7 @@ public sealed partial class SupportingContent
         var content = item.Content;
         var baseUrl = item.BaseUrl;
 
-        return new ParsedSupportingContentItem(title, content.Trim(), baseUrl);
+        return new ParsedSupportingContentItem(title, baseUrl, content.Trim());
     }
 }
 
