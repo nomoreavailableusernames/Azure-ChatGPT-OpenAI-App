@@ -104,7 +104,7 @@ internal static class SearchClientExtensions
             if (sourcePageValue is string sourcePage && baseUrlValue is string baseUrl && contentValue is string content)
             {
                 content = content.Replace('\r', ' ').Replace('\n', ' ');
-                baseUrl = ConfigurationExtensions.ToCitationBaseUrl();
+                baseUrl = tring.Join(baseUrl,sourcePage);
                 sb.Add(new SupportingContentRecord(sourcePage,baseUrl,content));
             }
         }

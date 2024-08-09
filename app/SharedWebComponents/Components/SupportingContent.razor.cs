@@ -1,7 +1,4 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
-
-using Microsoft.Extensions.Configuration;
-
 namespace SharedWebComponents.Components;
 
 public sealed partial class SupportingContent
