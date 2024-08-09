@@ -1,4 +1,4 @@
-﻿<MudList Clickable="false">
+﻿<MudList Clickable="true">
     @foreach (var (index, value) in _supportingContent.Select((item, i) => (i, item)))
     {
         if (value.IsEmpty)
@@ -6,7 +6,7 @@
             continue;
         }
 
-        var (title, content) = value;
+        var (title, content, url) = value;
         var last = index == _supportingContent.Length - 1;
         if (index is not 0 && last is false)
         {
@@ -14,8 +14,10 @@
         }
 
         <MudListItem>
-            <MudText Typo="Typo.subtitle1" Class="pb-2" Style="font-weight: bold;" Color="Color.Primary"
-                OnClick="@(_ => OnShowCitationAsync(title))">@title</MudText>
+            <MudNavLink Href="@url" aria-label="@title" Icon="@Icons.Material.Filled.QuestionAnswer">
+                @title
+            </MudNavLink>
+            <!--<MudText Typo="Typo.subtitle1" Class="pb-2" Style="font-weight: bold;" Color="Color.Primary">@title</MudText>-->
             <MudText Typo="Typo.body1">@((MarkupString)content!)</MudText>
         </MudListItem>
     }
