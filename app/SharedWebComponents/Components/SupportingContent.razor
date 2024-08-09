@@ -14,7 +14,8 @@
         }
 
         <MudListItem>
-            <MudText Typo="Typo.subtitle1" Class="pb-2" Style="font-weight: bold;" Color="Color.Primary">@title</MudText>
+            <MudText Typo="Typo.subtitle1" Class="pb-2" Style="font-weight: bold;" Color="Color.Primary"
+                OnClick="@(_ => OnShowCitationAsync(title))">@title</MudText>
             <MudText Typo="Typo.body1">@((MarkupString)content!)</MudText>
         </MudListItem>
     }
@@ -38,4 +39,4 @@
             <MudImage Src="@url" Alt="@title" Height="400" />
         </MudListItem>
     }
-</MudList>
+    </MudList>
