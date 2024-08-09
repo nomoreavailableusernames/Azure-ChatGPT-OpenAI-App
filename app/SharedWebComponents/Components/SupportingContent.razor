@@ -5,7 +5,7 @@
         {
             continue;
         }
-
+        var storageUrl = ConfigurationExtensions.ToCitationBaseUrl();
         var (title, baseUrl, content) = value;
         var last = index == _supportingContent.Length - 1;
         if (index is not 0 && last is false)
@@ -14,8 +14,8 @@
         }
 
         <MudListItem>
-            <MudNavLink Typo="Typo.subtitle1" Class="pb-2" Style="font-weight: bold;" Color="Color.Primary" Href="@baseUrl"
-                aria-label="@title" Icon="@Icons.Custom.FileFormats.FileDocument">
+            <MudNavLink Typo="Typo.subtitle1" Class="pb-2" Style="font-weight: bold;" Color="Color.Primary"
+                Href="@(string.Join(baseUrl,title))" aria-label="@title" Icon="@Icons.Custom.FileFormats.FileDocument">
                 @title
             </MudNavLink>
             <!--<MudText Typo="Typo.subtitle1" Class="pb-2" Style="font-weight: bold;" Color="Color.Primary">@title</MudText>-->
