@@ -90,13 +90,13 @@ public class AzureSearchService(SearchClient searchClient) : ISearchService
                 if (useSemanticCaptions)
                 {
                     var docs = doc.SemanticSearch.Captions.Select(c => c.Text);
-                    baseUrlValue = string.Join(" . ", docs);
+                    baseUrlValue = string.Join("https://st65r2fo2xbeufi.blob.core.windows.net/content/", sourcePageValue);
                     contentValue = string.Join(" . ", docs);
                 }
                 else
                 {
                     doc.Document.TryGetValue("content", out var value);
-                    baseUrlValue = (string)value;
+                    baseUrlValue = string.Join("https://st65r2fo2xbeufi.blob.core.windows.net/content/", sourcePageValue);
                     contentValue = (string)value;
                 }
             }
@@ -109,7 +109,7 @@ public class AzureSearchService(SearchClient searchClient) : ISearchService
             if (sourcePageValue is string sourcePage && baseUrlValue is string baseUrl && contentValue is string content)
             {
                 content = content.Replace('\r', ' ').Replace('\n', ' ');
-                baseUrl = baseUrl.Replace('\r', ' ').Replace('\n', ' ');
+                baseUrl = string.Join("https://st65r2fo2xbeufi.blob.core.windows.net/content/", sourcePageValue);
                 sb.Add(new SupportingContentRecord(sourcePage, baseUrl, content));
             }
         }
