@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 
+using MinimalApi.Extensions;
+
 namespace SharedWebComponents.Components;
 
 public sealed partial class SupportingContent
