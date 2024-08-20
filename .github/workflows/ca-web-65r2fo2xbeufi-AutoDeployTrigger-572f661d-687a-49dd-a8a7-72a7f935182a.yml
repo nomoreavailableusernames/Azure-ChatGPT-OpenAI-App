@@ -4,19 +4,18 @@ name: Trigger auto deployment for ca-web-65r2fo2xbeufi
 on:
   # Automatically trigger it when detected changes in repo
   push:
-    branches: 
-      [ main ]
+    branches: [main]
     paths:
-    - '**'
-    - '.github/workflows/ca-web-65r2fo2xbeufi-AutoDeployTrigger-572f661d-687a-49dd-a8a7-72a7f935182a.yml'
+      - "**"
+      - ".github/workflows/ca-web-65r2fo2xbeufi-AutoDeployTrigger-572f661d-687a-49dd-a8a7-72a7f935182a.yml"
 
-  # Allow manual trigger 
-  workflow_dispatch:      
+  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions: 
+    permissions:
       id-token: write #This is required for requesting the OIDC JWT Token
       contents: read #Required when GH token is used to authenticate with private repo
 
@@ -34,14 +33,10 @@ jobs:
       - name: Build and push container image to registry
         uses: azure/container-apps-deploy-action@v2
         with:
-          appSourcePath: ${{ github.workspace }} 
+          appSourcePath: ${{ github.workspace }}
           registryUrl: cr65r2fo2xbeufi.azurecr.io
           registryUsername: ${{ secrets.CAWEB65R2FO2XBEUFI_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.CAWEB65R2FO2XBEUFI_REGISTRY_PASSWORD }}
           containerAppName: ca-web-65r2fo2xbeufi
           resourceGroup: rg-myenv
           imageToBuild: cr65r2fo2xbeufi.azurecr.io/ca-web-65r2fo2xbeufi:${{ github.sha }}
-          _buildArgumentsKey_: |
-            _buildArgumentsValues_
-
-
