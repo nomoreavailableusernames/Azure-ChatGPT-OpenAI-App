@@ -42,58 +42,53 @@ internal sealed class AzureBlobStorageService(BlobContainerClient container)
                     //Adding code to also upload original PDF so we have the entire document for reference.
                     //START NEW CODE FOR UPLOADING ORIGINAL DOCUMENT
 
-                    if (documents.PageCount == 1)
-                    {
-                        var blobName = BlobNameFromFilePage(fileName);
-                        var documentName = BlobNameFromFilePage(fileName);
-                        var blobClient = container.GetBlobClient(documentName);
+                    var blobName = BlobNameFromFilePage(fileName);
+                    var documentName = BlobNameFromFilePage(fileName);
+                    var blobClient = container.GetBlobClient(documentName);
 
+                    if (await blobClient.ExistsAsync(cancellationToken))
+                    {
+                        continue;
+                    }
+
+                    var url = blobClient.Uri.AbsoluteUri;
+                    await using var fileStream = file.OpenReadStream();
+                    await blobClient.UploadAsync(fileStream, new BlobHttpHeaders
+                    {
+                        ContentType = "image"
+                    }, cancellationToken: cancellationToken);
+                    uploadedFiles.Add(blobName);
+
+                    //END NEW CODE FOR UPLOADING ORIGINAL DOCUMENT
+
+                    for (int i = 0; i < documents.PageCount; i++)
+                    {
+                        documentName = BlobNameFromFilePage(fileName, i);
+                        blobClient = container.GetBlobClient(documentName);
                         if (await blobClient.ExistsAsync(cancellationToken))
                         {
                             continue;
                         }
 
-                        var url = blobClient.Uri.AbsoluteUri;
-                        await using var fileStream = file.OpenReadStream();
-                        await blobClient.UploadAsync(fileStream, new BlobHttpHeaders
+                        var tempFileName = Path.GetTempFileName();
+
+                        try
                         {
-                            ContentType = "image"
-                        }, cancellationToken: cancellationToken);
-                        uploadedFiles.Add(blobName);
+                            using var document = new PdfDocument();
+                            document.AddPage(documents.Pages[i]);
+                            document.Save(tempFileName);
 
-                    }  //END NEW CODE FOR UPLOADING ORIGINAL DOCUMENT
-                    else
-                    {
+                            await using var tempStream = File.OpenRead(tempFileName);
+                            await blobClient.UploadAsync(tempStream, new BlobHttpHeaders
+                            {
+                                ContentType = "application/pdf"
+                            }, cancellationToken: cancellationToken);
 
-                        for (int i = 0; i < documents.PageCount; i++)
+                            uploadedFiles.Add(documentName);
+                        }
+                        finally
                         {
-                            var documentName = BlobNameFromFilePage(fileName, i);
-                            var blobClient = container.GetBlobClient(documentName);
-                            if (await blobClient.ExistsAsync(cancellationToken))
-                            {
-                                continue;
-                            }
-
-                            var tempFileName = Path.GetTempFileName();
-
-                            try
-                            {
-                                using var document = new PdfDocument();
-                                document.AddPage(documents.Pages[i]);
-                                document.Save(tempFileName);
-
-                                await using var tempStream = File.OpenRead(tempFileName);
-                                await blobClient.UploadAsync(tempStream, new BlobHttpHeaders
-                                {
-                                    ContentType = "application/pdf"
-                                }, cancellationToken: cancellationToken);
-
-                                uploadedFiles.Add(documentName);
-                            }
-                            finally
-                            {
-                                File.Delete(tempFileName);
-                            }
+                            File.Delete(tempFileName);
                         }
                     }
                 }
